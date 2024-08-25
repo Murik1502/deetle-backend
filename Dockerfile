@@ -1,14 +1,13 @@
-FROM node:current-alpine3.20
+FROM node:18
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package*.json ./
 
-COPY package.json ./
-COPY package-lock.json ./
+RUN npm install
 
-RUN npm install --silent
+COPY . .
 
-COPY . ./
+RUN npm run build
 
-CMD ["npm", "start"]
+CMD [ "node", "dist/main.js" ]

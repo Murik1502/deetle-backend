@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TimeBlockService } from './time-block.service';
 import { TimeBlockController } from './time-block.controller';
+import { PrismaService } from '../prisma.service'
 
 @Module({
   controllers: [TimeBlockController],
-  providers: [TimeBlockService],
+  providers: [TimeBlockService, PrismaService],
 })
 export class TimeBlockModule {}
